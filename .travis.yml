@@ -1,0 +1,31 @@
+language: python
+
+python:
+  - "3.10"
+  - "3.11"
+  - "3.12"
+  - "3.13"
+  - "3.14"
+
+install:
+  - pip install -r requirements.txt
+
+before_script:
+  - black --check .
+  - flake8 .
+
+script:
+  - coverage run --source=polls manage.py test
+
+after_success:
+  - if [ "$TRAVIS_PYTHON_VERSION" = "3.14" ]; then coveralls; fi
+
+deploy:
+  provider: elasticbeanstalk
+  edge: true
+  region: us-east-1
+  app: djangotutorial
+  env: django-env
+  on:
+    branch: master
+    condition: "$TRAVIS_PYTHON_VERSION = 3.14"
