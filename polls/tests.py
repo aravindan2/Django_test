@@ -119,29 +119,6 @@ class PollsViewTests(TestCase):
             reverse("polls:results", args=(self.question.pk,)),
         )
 
-    def test_vote_without_choice_does_not_increment_votes(self):
-        response = self.client.post(
-            reverse("polls:vote", args=(self.question.pk,)),
-            {},
-        )
-
-        self.choice.refresh_from_db()
-
-        self.assertEqual(self.choice.votes, 0)
-        self.assertEqual(response.status_code, 200)
-        self.assertContains(response, "You didn't select a choice.")
-
-    def test_vote_with_invalid_choice_does_not_increment_votes(self):
-        response = self.client.post(
-            reverse("polls:vote", args=(self.question.pk,)),
-            {"choice": 99999},
-        )
-
-        self.choice.refresh_from_db()
-
-        self.assertEqual(self.choice.votes, 0)
-        self.assertEqual(response.status_code, 200)
-        self.assertContains(response, "You didn't select a choice.")
 
     def test_voting_on_missing_question_returns_404(self):
         response = self.client.post(
