@@ -86,30 +86,22 @@ class PollsViewTests(TestCase):
         self.assertContains(response, self.question.question_text)
 
     def test_detail_page_returns_200(self):
-        response = self.client.get(
-            reverse("polls:detail", args=(self.question.pk,))
-        )
+        response = self.client.get(reverse("polls:detail", args=(self.question.pk,)))
 
         self.assertEqual(response.status_code, 200)
 
     def test_detail_page_displays_question(self):
-        response = self.client.get(
-            reverse("polls:detail", args=(self.question.pk,))
-        )
+        response = self.client.get(reverse("polls:detail", args=(self.question.pk,)))
 
         self.assertContains(response, self.question.question_text)
 
     def test_results_page_returns_200(self):
-        response = self.client.get(
-            reverse("polls:results", args=(self.question.pk,))
-        )
+        response = self.client.get(reverse("polls:results", args=(self.question.pk,)))
 
         self.assertEqual(response.status_code, 200)
 
     def test_missing_question_returns_404(self):
-        response = self.client.get(
-            reverse("polls:detail", args=(99999,))
-        )
+        response = self.client.get(reverse("polls:detail", args=(99999,)))
 
         self.assertEqual(response.status_code, 404)
 
