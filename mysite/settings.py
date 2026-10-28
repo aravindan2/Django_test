@@ -28,7 +28,7 @@ DEBUG = True
 ALLOWED_HOSTS = [
     "127.0.0.1",
     "localhost",
-    "django-env.eba-djztsby2.us-east-1.elasticbeanstalk.com",
+    "av4008.us-east-1.elasticbeanstalk.com",
 ]
 
 

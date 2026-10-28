@@ -22,6 +22,7 @@ deploy:
   region: us-east-1
   app: djangotutorial
   env: django-env
+  bucket: elasticbeanstalk-us-east-1-456157355328
   on:
     branch: master
     condition: "$TRAVIS_PYTHON_VERSION = 3.14"
