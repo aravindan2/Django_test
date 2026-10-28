@@ -12,9 +12,9 @@ before_script:
 
 script:
   - coverage run --source=polls manage.py test
-
+  
 after_success:
-  - if [ "$TRAVIS_PYTHON_VERSION" = "3.14" ]; then coveralls; fi
+  - if [ "$TRAVIS_PYTHON_VERSION" = "3.14" ]; then coveralls --service-name travis-ci --service-branch "$TRAVIS_BRANCH"; fi
 
 deploy:
   provider: elasticbeanstalk
