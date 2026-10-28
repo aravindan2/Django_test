@@ -119,7 +119,6 @@ class PollsViewTests(TestCase):
             reverse("polls:results", args=(self.question.pk,)),
         )
 
-
     def test_voting_on_missing_question_returns_404(self):
         response = self.client.post(
             reverse("polls:vote", args=(99999,)),
